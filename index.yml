@@ -1,8 +1,0 @@
-name: Unorganized Highlight
-description: An unorganized scenes highlighter
-version: 1.0.0
-ui:
-  css:
-    - unorganized-highlight.css
-  js:
-    - unorganized-highlight.js

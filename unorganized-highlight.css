@@ -1,8 +1,11 @@
-.scene-card {
-    transition: filter 0.2s, opacity 0.2s;
+#root.uh-organized-hide-icon .scene-card .organized {
+    display: none;
 }
 
-.scene-card.unorganized {
-    filter: grayscale(1);
+#root.uh-unorganized-fade .scene-card:not(:has(div.organized)) {
     opacity: 0.5;
+}
+
+#root.uh-unorganized-grayscale .scene-card:not(:has(div.organized)) {
+    filter: grayscale(1);
 }

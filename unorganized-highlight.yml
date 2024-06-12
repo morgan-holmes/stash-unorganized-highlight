@@ -1,0 +1,18 @@
+name: Unorganized Highlight
+description: An unorganized scenes highlighter
+version: 1.1
+settings:
+  fadeUnorganized:
+    displayName: Fade unorganized scenes cards
+    type: BOOLEAN
+  grayUnorganized:
+    displayName: Remove colors from unorganized scenes cards
+    type: BOOLEAN
+  hideOrganizedIcon:
+    displayName: Remove organized icon from organized scenes cards
+    type: BOOLEAN
+ui:
+  css:
+    - unorganized-highlight.css
+  javascript:
+    - unorganized-highlight.js

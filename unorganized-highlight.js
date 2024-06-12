@@ -1,28 +1,34 @@
-const TIMEOUT_DELAY = 1000;
-const UNORGANIZED_CLASSNAME = 'unorganized';
+const UH__PLUGIN_NAME = "unorganized-highlight";
+const UH__FADE_CLASSNAME = "uh-unorganized-fade";
+const UH__GRAYSCALE_CLASSNAME = "uh-unorganized-grayscale";
+const UH__HIDE_CLASSNAME = "uh-organized-hide-icon";
 
-const addUnorganizedStyle = (node) => node.className += ' ' + UNORGANIZED_CLASSNAME;
-const exists = (node) => node !== null && node !== undefined;
-
-const flagUnorganizedScenes = () => {
-    setTimeout(() => {
-
-        const sceneCards = Array.prototype.slice.call(document.getElementsByClassName("scene-card"));
-
-        sceneCards.forEach((card) => {
-            const organizedDiv = card.querySelector('div[role="group"]')
-                ?.querySelector('div.organized');
-            if(!exists(organizedDiv)){
-                addUnorganizedStyle(card);
-            }
-        });
-
-    }, TIMEOUT_DELAY);
-}
+const UH__DEFAULT_CONFIGURATION = {
+    fadeUnorganized: false,
+    grayUnorganized: false,
+    hideOrganizedIcon: false
+};
 
 
-window.navigation.addEventListener("navigate", (event) => {
-    flagUnorganizedScenes();
+setTimeout(async () => {
+    const userConfiguration = await csLib.getConfiguration(UH__PLUGIN_NAME, {});
+    const {fadeUnorganized, grayUnorganized, hideOrganizedIcon} = {
+        ...UH__DEFAULT_CONFIGURATION,
+        ...userConfiguration
+    }
+
+    const addStyle = (node, className) => node.className = `${node.className} ${className}`;
+
+    if (hideOrganizedIcon){
+        addStyle(document.getElementById("root"), UH__HIDE_CLASSNAME);
+    }
+
+    if (fadeUnorganized){
+        addStyle(document.getElementById("root"), UH__FADE_CLASSNAME);
+    }
+
+    if (grayUnorganized){
+        addStyle(document.getElementById("root"), UH__GRAYSCALE_CLASSNAME);
+    }
+
 });
-
-flagUnorganizedScenes();
