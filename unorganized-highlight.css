@@ -1,0 +1,8 @@
+.scene-card {
+    transition: filter 0.2s, opacity 0.2s;
+}
+
+.scene-card.unorganized {
+    filter: grayscale(1);
+    opacity: 0.5;
+}
